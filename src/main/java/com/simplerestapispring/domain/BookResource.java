@@ -6,9 +6,9 @@ import java.time.LocalDate;
 public class BookResource implements Serializable {
     private static final long serializableVersionUID = 1L;
 
-    private String bookId;
-    private String bookName;
-    private LocalDate publishDate;
+    private final String bookId;
+    private final String bookName;
+    private final LocalDate publishDate;
 
     public BookResource(String bookId, String bookName, LocalDate publishDate) {
         this.bookId = bookId;

@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
 
 public class Book {
-    @NonNull String bookId;
-    @NotNull String bookName;
-    @NotNull LocalDate publishDate;
+    public @NonNull String bookId;
+    public @NotNull String bookName;
+    public @NotNull LocalDate publishDate;
 
     private Book(String bookId, String bookName, LocalDate publishDate) {
         this.bookId = bookId;
@@ -17,7 +17,7 @@ public class Book {
         this.publishDate = publishDate;
     }
 
-    public static Book from(String bookId, String bookName, LocalDate publishDate){
+    public static Book from(String bookId, String bookName, LocalDate publishDate) {
         return new Book(bookId, bookName, publishDate);
     }
 
