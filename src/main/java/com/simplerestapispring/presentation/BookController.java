@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.simplerestapispring.application.BookService;
 import com.simplerestapispring.domain.Book;
-import com.simplerestapispring.domain.BookResource;
+import com.simplerestapispring.domain.BookId;
+import com.simplerestapispring.domain.BookName;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/book")
@@ -30,13 +30,13 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    /**
-     * $ curl -X GET http://localhost:8080/book/000 | jq
+    /*
+     * $ curl -X GET http://localhost:8080/book/bookid/000 | jq
      */
-    @RequestMapping(path = "{bookId}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(path = "bookid/{bookId}", method = RequestMethod.GET, produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public String find(@PathVariable String bookId) throws JsonProcessingException {
-        Book book = bookService.findBy(bookId);
+    public String findByBookId(@PathVariable String bookId) throws JsonProcessingException {
+        Book book = bookService.findBy(BookId.from(bookId));
 
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         ObjectMapper mapper = Jackson2ObjectMapperBuilder
@@ -49,5 +49,12 @@ public class BookController {
         String result = mapper.writeValueAsString(book);
 //        String result = mapper.writeValueAsString(BookResource.from(book));
         return result;
+    }
+
+    @RequestMapping(path = "bookname/{bookName}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public Book findByBookName(@PathVariable("bookName") String bookName){
+        Book book = bookService.findBy(BookName.from(bookName));
+        return book;
     }
 }
