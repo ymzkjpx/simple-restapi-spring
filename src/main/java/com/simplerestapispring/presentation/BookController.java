@@ -6,9 +6,11 @@ import com.simplerestapispring.domain.Book;
 import com.simplerestapispring.domain.BookId;
 import com.simplerestapispring.domain.BookName;
 import com.simplerestapispring.domain.BookResource;
+import com.simplerestapispring.domain.WebRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,7 +59,7 @@ public class BookController {
      */
     @PostMapping(path = "register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void post(@RequestBody BookRequest bookRequest) {
+    public void post(@RequestBody @Validated(WebRequest.class) Book bookRequest) {
         Book book = Book.fromBy(bookRequest.bookName(), bookRequest.publishDate());
         bookService.register(book);
     }

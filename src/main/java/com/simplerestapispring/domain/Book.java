@@ -1,17 +1,13 @@
 package com.simplerestapispring.domain;
 
-import org.springframework.lang.NonNull;
-
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
-public class Book {
-    private final @NonNull BookId bookId;
-    private final @NotNull BookName bookName;
-    private final @NotNull LocalDate publishDate;
-
-    private Book(BookId bookId, BookName bookName, LocalDate publishDate) {
+public record Book(@NotNull BookId bookId,
+                   @NotNull(groups = WebRequest.class) BookName bookName,
+                   @NotNull(groups = WebRequest.class) LocalDate publishDate) {
+    public Book(BookId bookId, BookName bookName, LocalDate publishDate) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.publishDate = publishDate;
@@ -25,14 +21,17 @@ public class Book {
         return new Book(BookId.generate(), bookName, publishDate);
     }
 
+    @Override
     public BookId bookId() {
         return bookId;
     }
 
+    @Override
     public BookName bookName() {
         return bookName;
     }
 
+    @Override
     public LocalDate publishDate() {
         return publishDate;
     }
