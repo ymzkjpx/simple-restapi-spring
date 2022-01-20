@@ -1,5 +1,8 @@
 package com.simplerestapispring.domain;
 
+import java.util.Objects;
+import java.util.UUID;
+
 import javax.validation.constraints.NotNull;
 
 public class BookId {
@@ -13,7 +16,25 @@ public class BookId {
         return new BookId(bookId);
     }
 
+    public static BookId generate() {
+        return new BookId(UUID.randomUUID().toString());
+    }
+
     public String value() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookId)) return false;
+        BookId bookId = (BookId) o;
+        return Objects.equals(value, bookId.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }
+

@@ -1,5 +1,7 @@
 package com.simplerestapispring.domain;
 
+import java.util.Objects;
+
 import javax.validation.constraints.NotNull;
 
 public class BookName {
@@ -13,7 +15,6 @@ public class BookName {
         return new BookName(bookName);
     }
 
-    @Deprecated(since = "jackson")
     public String getValue() {
         return value;
     }
@@ -27,5 +28,18 @@ public class BookName {
         return "BookName{" +
                 "value='" + value + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookName)) return false;
+        BookName bookName = (BookName) o;
+        return Objects.equals(getValue(), bookName.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 }

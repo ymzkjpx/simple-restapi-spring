@@ -7,7 +7,7 @@ public record BookResource(String bookId, String bookName, LocalDate publishDate
         implements Serializable {
     private static final long serializableVersionUID = 1L;
 
-    public static BookResource from(Book book) {
-        return new BookResource(book.bookId(), book.bookName().value(), book.publishDate());
+    public static BookResource of(Book book) {
+        return new BookResource(book.bookId().value(), book.bookName().value(), book.publishDate());
     }
 }
