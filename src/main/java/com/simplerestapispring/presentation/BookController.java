@@ -1,9 +1,6 @@
 package com.simplerestapispring.presentation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.simplerestapispring.application.BookService;
 import com.simplerestapispring.domain.Book;
 import com.simplerestapispring.domain.BookId;
@@ -12,7 +9,6 @@ import com.simplerestapispring.domain.BookResource;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/book")
@@ -65,7 +57,7 @@ public class BookController {
      */
     @PostMapping(path = "register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void post(@RequestBody BookRequest bookRequest){
+    public void post(@RequestBody BookRequest bookRequest) {
         Book book = Book.fromBy(bookRequest.bookName(), bookRequest.publishDate());
         bookService.register(book);
     }

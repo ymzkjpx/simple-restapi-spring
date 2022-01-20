@@ -25,18 +25,6 @@ public class Book {
         return new Book(BookId.generate(), bookName, publishDate);
     }
 
-    public BookId getBookId() {
-        return bookId;
-    }
-
-    public BookName getBookName() {
-        return bookName;
-    }
-
-    public LocalDate getPublishDate() {
-        return publishDate;
-    }
-
     public BookId bookId() {
         return bookId;
     }

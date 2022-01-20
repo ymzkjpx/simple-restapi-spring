@@ -14,12 +14,12 @@ import java.util.Optional;
 public class BookService {
     public static HashMap<BookId, Book> repository = new HashMap<>();
 
-    private BookService(){
+    private BookService() {
         Book mockBook = mockBook();
         repository.put(mockBook.bookId(), mockBook);
     }
 
-    private Book mockBook(){
+    private Book mockBook() {
         return Book.from(
                 BookId.from("00000000-0000-0000-0000-000000000000")
                 , BookName.from("銀河鉄道の夜")

@@ -6,7 +6,7 @@ import java.util.UUID;
 import javax.validation.constraints.NotNull;
 
 public class BookId {
-    @NotNull private String value;
+    @NotNull private final String value;
 
     private BookId(String value) {
         this.value = value;

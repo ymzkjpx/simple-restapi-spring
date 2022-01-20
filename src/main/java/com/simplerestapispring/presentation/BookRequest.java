@@ -13,19 +13,11 @@ public class BookRequest {
         this.publishDate = publishDate;
     }
 
-    public String getBookName() {
-        return bookName;
-    }
-
-    public LocalDate getPublishDate() {
-        return publishDate;
-    }
-
-    public BookName bookName(){
+    public BookName bookName() {
         return BookName.from(bookName);
     }
 
-    public LocalDate publishDate(){
+    public LocalDate publishDate() {
         return publishDate;
     }
 }

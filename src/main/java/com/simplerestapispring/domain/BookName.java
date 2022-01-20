@@ -5,7 +5,7 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 public class BookName {
-    @NotNull private String value;
+    @NotNull private final String value;
 
     private BookName(String value) {
         this.value = value;
