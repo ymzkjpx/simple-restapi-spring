@@ -12,9 +12,16 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        resources.srcDirs = ["src/main/java", "src/main/resources"]
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation "com.fasterxml.jackson.core:jackson-databind:2.13.1"
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.1"
     implementation 'org.springframework.boot:spring-boot-starter'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

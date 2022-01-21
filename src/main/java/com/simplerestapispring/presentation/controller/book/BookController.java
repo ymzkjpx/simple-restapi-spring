@@ -1,4 +1,4 @@
-package com.simplerestapispring.presentation;
+package com.simplerestapispring.presentation.controller.book;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.simplerestapispring.application.BookService;

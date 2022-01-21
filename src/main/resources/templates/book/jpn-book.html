@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        // ②変換関数：json to 欲しい形
+        const parseJson = function (data) {
+            const returnJson = {};
+            for (let idx = 0; idx < data.length; idx++) {
+                returnJson[data[idx].name] = data[idx].value
+            }
+            return returnJson;
+        };
+        $('form').submit(function () {
+            let data = $('form').serializeArray();  // ①form to json
+            data = parseJson(data); // ②json to 欲しい形
+            console.log(data)
+            // ③送信
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                // scriptCharset: 'utf-8',
+                data: JSON.stringify(data)
+            })
+        });
+
+        /*]]>*/
+    </script>
+
+</head>
+<body>
+<h1>Jpn Book Html</h1>
+
+<article>
+    <form action="#" method="post" th:action="@{/book/jpn-book}">
+        <input th:name="メールアドレス" id="mail" type="text">
+        <input th:name="担当者名" id="assignee" type="text">
+        <input th:name="内容" id="content" type="text">
+        <div>
+            <button name="" type="submit">送信</button>
+        </div>
+    </form>
+</article>
+
+</body>
+</html>

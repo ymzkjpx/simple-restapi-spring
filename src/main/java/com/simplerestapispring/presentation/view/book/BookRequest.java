@@ -1,12 +1,11 @@
-package com.simplerestapispring.presentation;
+package com.simplerestapispring.presentation.view.book;
 
 import com.simplerestapispring.domain.BookName;
 
 import java.time.LocalDate;
 
 /**
- * @DoNotUse
- * 現在使われておりません。
+ * @DoNotUse 現在使われておりません。
  * WebRequestアノテーションを利用した応用技によって、本クラスは不要になった。
  */
 public class BookRequest {
